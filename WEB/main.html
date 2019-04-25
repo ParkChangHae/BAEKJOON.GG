@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
+    <script>
+
+        var auth, database, userInfo;
+
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB13-gwgVjR75BjSPxBaMS5mEzTvePx4gE",
+            authDomain: "baekjoongg.firebaseapp.com",
+            databaseURL: "https://baekjoongg.firebaseio.com",
+            projectId: "baekjoongg",
+            storageBucket: "baekjoongg.appspot.com",
+            messagingSenderId: "284865530354"
+        };
+        firebase.initializeApp(config);
+
+        var rootRef = firebase.database().ref();
+
+        //1번 uid 비교
+        rootRef.child('user').once('value', function(data){
+            console.log('1번 :' , data.val());
+        });
+
+        //2번 이메일 찾기
+        rootRef.child('user').child('Rche').once('value', function(data){
+            console.log('2번 :' , data.val());
+        });
+
+        //3번 3개만 가져오기
+        rootRef.child('user').limitToFirst(1).once('value', function(data){
+            console.log('3번 :' , data.val());
+        });
+
+    </script>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+</head>
+<body>
+<h1>hello world</h1>
+</body>
+</html>
